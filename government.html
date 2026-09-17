@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="QuantumShield DefenceGuard: a fictional working post-quantum command-link lab." />
+    <meta http-equiv="refresh" content="0; url=defence.html" />
+    <title>DefenceGuard | QuantumShield</title>
+    <script>window.location.replace('defence.html');</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="vendor/ml-kem.classic.js"></script>
+    <script src="government.js" defer></script>
+  </head>
+  <body>
+    <main>
+      <nav class="nav" aria-label="Main navigation">
+        <a class="brand" href="index.html"><span class="brand-mark">Q</span><span>Quantum<span>Shield</span></span></a>
+        <a class="nav-link" href="solution.html">← Quantum-safe solution</a>
+      </nav>
+
+      <section class="gov-hero">
+        <p class="eyebrow"><span></span> GOVGUARD · INDIA-FOCUSED FICTIONAL DEMO</p>
+        <h1>Secure public services<br />without exposing <em>citizens.</em></h1>
+        <p>Government data must stay confidential for years, but departments still need useful information to deliver public services. This lab shows a fictional central service gateway releasing only a purpose-limited, privacy-preserving planning view to an authorised state office.</p>
+        <div class="gov-hero-notes"><span>SYNTHETIC RECORDS ONLY</span><span>MINIMUM-NECESSARY DATA</span><span>POST-QUANTUM PROTECTED</span></div>
+      </section>
+
+      <section class="gov-lab" aria-labelledby="gov-lab-title">
+        <div class="gov-lab-head">
+          <div>
+            <p class="step-label">E-GOVERNANCE SECURE RELEASE LAB</p>
+            <h2 id="gov-lab-title">Central service gateway → authorised state office</h2>
+            <p>A fictional National Civic Services Gateway prepares an education-support planning view for a fictional State Education Office. Identity fields and individual benefit decisions never enter the released package. The permitted view is signed, then encrypted with ML-KEM-768 and AES-256-GCM.</p>
+          </div>
+          <span class="gov-tag">PURPOSE: DISTRICT PLANNING</span>
+        </div>
+
+        <div class="gov-flow" aria-label="Government secure-release workflow">
+          <article id="govKeyCard"><span>01</span><div><strong>State office creates public key</strong><p>The state office shares a public ML-KEM key; its private key remains local.</p></div></article>
+          <div class="gov-arrow">→</div>
+          <article id="govPolicyCard"><span>02</span><div><strong>Gateway applies release policy</strong><p>Remove direct identifiers and reduce details to approved planning groups.</p></div></article>
+          <div class="gov-arrow">→</div>
+          <article id="govPackageCard"><span>03</span><div><strong>Sign and encrypt release</strong><p>The exact approved release is signed and encrypted for the authorised office.</p></div></article>
+          <div class="gov-arrow">→</div>
+          <article id="govRecipientCard"><span>04</span><div><strong>Open and verify</strong><p>The recipient decrypts the package and checks the gateway signature.</p></div></article>
+        </div>
+
+        <div class="gov-action-row">
+          <button id="govGenerateKeysButton" type="button">1. Create state-office key set <span>→</span></button>
+          <button id="govPolicyButton" type="button" disabled>2. Apply purpose &amp; privacy policy <span>→</span></button>
+          <button id="govEncryptButton" type="button" disabled>3. Sign &amp; encrypt approved release <span>→</span></button>
+          <button id="govOpenButton" type="button" disabled>4. State office opens &amp; verifies <span>→</span></button>
+        </div>
+
+        <section class="gov-journey" aria-labelledby="gov-journey-title">
+          <div class="gov-journey-head">
+            <div><p class="result-label">VISIBLE DATA JOURNEY</p><h3 id="gov-journey-title">What is allowed to leave the central gateway?</h3><p>The policy decision happens before encryption. Encryption protects the permitted release in transit; it does not make unrestricted sharing acceptable.</p></div>
+            <span id="govJourneyState">WAITING FOR STATE KEY</span>
+          </div>
+
+          <div class="gov-journey-grid">
+            <article class="gov-journey-card source-gov-card" id="govJourneySource">
+              <div class="journey-card-head"><span>01</span><div><p>GATEWAY-ONLY INPUT</p><h4>Raw synthetic application</h4></div></div>
+              <dl class="journey-fields">
+                <div><dt>Name</dt><dd>Riya Sharma</dd></div>
+                <div><dt>Service reference</dt><dd>SYN-GOV-1001</dd></div>
+                <div><dt>Age</dt><dd>19</dd></div>
+                <div><dt>PIN code</dt><dd>560034</dd></div>
+                <div><dt>Income proof</dt><dd>₹2.1L</dd></div>
+                <div><dt>Benefit decision</dt><dd>Approved</dd></div>
+              </dl>
+              <code>Never copied into the released package</code>
+            </article>
+
+            <article class="gov-journey-card" id="govJourneyPolicy">
+              <div class="journey-card-head"><span>02</span><div><p>RELEASE POLICY</p><h4>Purpose-bound transformation</h4></div></div>
+              <dl class="journey-fields">
+                <div><dt>Name</dt><dd class="removed-value">Removed</dd></div>
+                <div><dt>Service reference</dt><dd class="removed-value">Removed</dd></div>
+                <div><dt>Age 19</dt><dd>18–24</dd></div>
+                <div><dt>PIN 560034</dt><dd>Metro cluster</dd></div>
+                <div><dt>Income ₹2.1L</dt><dd>₹0–3L band</dd></div>
+                <div><dt>Decision</dt><dd class="restricted-value">Aggregate only</dd></div>
+              </dl>
+              <code id="govJourneyPolicyOutput">Waiting for policy evaluation</code>
+            </article>
+
+            <article class="gov-journey-card" id="govJourneyPackage">
+              <div class="journey-card-head"><span>03</span><div><p>PROTECTED RELEASE</p><h4>Signed planning groups</h4></div></div>
+              <dl class="journey-fields">
+                <div><dt>Purpose ID</dt><dd>EDU-PLAN-2026</dd></div>
+                <div><dt>Groups</dt><dd id="govJourneyGroups">Waiting</dd></div>
+                <div><dt>ML-KEM</dt><dd id="govJourneyKem">Waiting</dd></div>
+                <div><dt>AES-GCM</dt><dd id="govJourneyAes">Waiting</dd></div>
+                <div><dt>Gateway signature</dt><dd id="govJourneySignature">Waiting</dd></div>
+                <div><dt>Citizen identities</dt><dd class="removed-value">Absent</dd></div>
+              </dl>
+              <code id="govJourneyPackageOutput">Waiting for encrypted release</code>
+            </article>
+
+            <article class="gov-journey-card" id="govJourneyRecipient">
+              <div class="journey-card-head"><span>04</span><div><p>STATE OFFICE</p><h4>Receives approved insight</h4></div></div>
+              <dl class="journey-fields">
+                <div><dt>Identities</dt><dd class="removed-value">Not available</dd></div>
+                <div><dt>Individual decision</dt><dd class="restricted-value">Not available</dd></div>
+                <div><dt>Planning groups</dt><dd id="govJourneyOpen">Locked</dd></div>
+                <div><dt>Signature</dt><dd id="govJourneyVerify">Not checked</dd></div>
+                <div><dt>Safe query</dt><dd id="govJourneyQuery">Not run</dd></div>
+                <div><dt>Modification test</dt><dd id="govJourneyTamper">Not run</dd></div>
+              </dl>
+              <code id="govJourneyRecipientOutput">Waiting for private-key decryption</code>
+            </article>
+          </div>
+        </section>
+
+        <section class="gov-key-panel" id="govKeyPanel" hidden>
+          <div><p class="result-label">STATE-OFFICE KEY EXCHANGE</p><h3>State Education Office ML-KEM-768 public key</h3><p>The central gateway receives this public fingerprint. The matching state-office private key remains local in this browser tab.</p></div>
+          <code id="govPublicKeyFingerprint">—</code>
+        </section>
+
+        <section class="gov-policy-panel" id="govPolicyPanel" hidden aria-labelledby="gov-policy-title">
+          <div class="gov-panel-head"><div><p class="result-label">POLICY DECISION</p><h3 id="gov-policy-title">Classify before you encrypt</h3><p>Every field has a stated purpose. No identity-bearing field is added to a district-planning release.</p></div><span id="govPolicyState">WAITING</span></div>
+          <div class="gov-policy-list" id="govPolicyList"></div>
+        </section>
+
+        <section class="gov-groups-panel" id="govGroupsPanel" hidden aria-labelledby="gov-groups-title">
+          <div class="gov-panel-head"><div><p class="result-label">PERMITTED PLANNING VIEW</p><h3 id="gov-groups-title">Anonymous service-demand groups</h3><p>Each released group contains at least three fictional applications. This view supports capacity planning, not citizen-level decisions.</p></div><span id="govKStatus">k = 3</span></div>
+          <div class="gov-table-wrap"><table id="govGroupsTable"><thead><tr><th>District cluster</th><th>Age band</th><th>Income band</th><th>Programme</th><th>Applications</th><th>Individual decision</th></tr></thead><tbody></tbody></table></div>
+        </section>
+
+        <section class="gov-package-panel" id="govPackagePanel" hidden aria-labelledby="gov-package-title">
+          <div><p class="result-label">REAL HYBRID ENCRYPTION + SIGNATURE</p><h3 id="gov-package-title">Approved release protected for one authorised office</h3><p>The gateway signs the exact purpose-bound manifest, encapsulates a one-time ML-KEM secret to the state office’s public key, then uses AES-256-GCM to encrypt the package.</p></div>
+          <dl>
+            <div><dt>Approved payload</dt><dd id="govPackagePayload">—</dd></div>
+            <div><dt>ML-KEM ciphertext</dt><dd id="govPackageKem">—</dd></div>
+            <div><dt>AES-GCM IV</dt><dd id="govPackageIv">—</dd></div>
+            <div><dt>Signature</dt><dd id="govPackageSignature">—</dd></div>
+          </dl>
+        </section>
+
+        <section class="gov-recipient-panel" id="govRecipientPanel" hidden aria-labelledby="gov-recipient-title">
+          <div class="gov-panel-head"><div><p class="result-label">AUTHORISED STATE-OFFICE VIEW</p><h3 id="gov-recipient-title">The package opens only after a valid cryptographic check</h3><p>The state office recovers the one-time secret with its private ML-KEM key, decrypts the package, and verifies the gateway signature over the exact manifest.</p></div><span id="govVerificationState">WAITING</span></div>
+          <div class="gov-recipient-grid">
+            <article><span>DECRYPTION</span><strong id="govDecryptOutcome">Waiting for protected release</strong></article>
+            <article><span>MANIFEST SIGNATURE</span><strong id="govSignatureOutcome">Waiting for verification</strong></article>
+            <article><span>IDENTITY FIELDS</span><strong>Not present in package</strong></article>
+          </div>
+        </section>
+
+        <section class="gov-query-panel" id="govQueryPanel" hidden aria-labelledby="gov-query-title">
+          <div class="gov-panel-head"><div><p class="result-label">APPROVED ANALYTICS REQUESTS</p><h3 id="gov-query-title">Ask about service demand, not about a citizen.</h3><p>An approved aggregate request is answered inside the gateway privacy service. A request that links an identity to an individual decision is denied.</p></div><span>ε = 1.0</span></div>
+          <div class="gov-query-actions">
+            <button id="govSafeQueryButton" type="button">Query: applications in Bengaluru Metro cluster <span>→</span></button>
+            <button id="govUnsafeQueryButton" class="unsafe-query" type="button">Query: citizen references with approval status <span>→</span></button>
+          </div>
+          <div class="gov-query-result" id="govQueryResult" aria-live="polite">Open and verify the approved release before asking an authorised aggregate question.</div>
+        </section>
+
+        <section class="gov-tamper-panel" id="govTamperPanel" hidden>
+          <div><p class="result-label">INTEGRITY TEST</p><h3>What if someone changes the released purpose or group count?</h3><p>This test modifies a copy of the decrypted manifest. The original gateway signature must then fail, so the state office rejects it.</p></div>
+          <button id="govTamperButton" type="button">Test modified manifest <span>→</span></button>
+        </section>
+
+        <section class="gov-trace" aria-labelledby="gov-trace-title">
+          <div class="gov-trace-head"><div><p class="result-label">WORKING TRACE</p><h3 id="gov-trace-title">What happens behind the scenes</h3></div><span>REAL CRYPTO + EXPLICIT POLICY</span></div>
+          <div class="gov-trace-grid">
+            <article id="govTraceKey"><p>KEY EXCHANGE</p><strong>State ML-KEM-768 setup</strong><code>Waiting for recipient public key</code></article>
+            <article id="govTracePolicy"><p>DATA GOVERNANCE</p><strong>Purpose → minimise → group</strong><code>Waiting for release policy</code></article>
+            <article id="govTracePackage"><p>PROTECTED PACKAGE</p><strong>Sign + ML-KEM + AES-GCM</strong><code>Waiting for approved planning view</code></article>
+            <article id="govTraceVerify"><p>RECEIVER CHECK</p><strong>Decrypt and verify origin</strong><code>Waiting for state office</code></article>
+            <article id="govTraceTamper"><p>INTEGRITY TEST</p><strong>Reject modified manifest</strong><code>Waiting for modification test</code></article>
+          </div>
+        </section>
+
+        <section class="gov-console" aria-live="polite"><div><span></span> GOVGUARD RELEASE CONSOLE</div><p id="govConsole">Ready. Create the authorised state-office key set to begin.</p></section>
+        <aside class="gov-accuracy"><span class="note-icon">i</span><p><strong>What this demonstrates:</strong> ML-KEM-768, AES-256-GCM, SHA-256, and ECDSA P-256 signing are executed locally in the browser. Purpose limitation, data minimisation, k-anonymity, and differential privacy use fictional data and transparent rules. It is an educational prototype—not an official Government of India system, legal consent system, identity platform, or production deployment. A production post-quantum signature layer should use ML-DSA.</p></aside>
+      </section>
+
+      <section class="gov-why">
+        <p class="step-label">THE GOVERNMENT SECURITY STORY</p>
+        <h2>Public-service delivery needs confidentiality, integrity, and limits on what is shared.</h2>
+        <div>
+          <article><span>CONFIDENTIALITY</span><h3>Protect the approved release</h3><p>ML-KEM-768 establishes a quantum-resistant secret and AES-GCM encrypts the allowed planning package.</p></article>
+          <article><span>INTEGRITY &amp; ORIGIN</span><h3>Verify the issuing gateway</h3><p>A digital signature binds the sender, purpose ID, policy version, and exact released groups together.</p></article>
+          <article><span>DATA GOVERNANCE</span><h3>Share only the minimum necessary</h3><p>Direct identifiers and individual decisions remain in the source system; only approved grouped insight is released.</p></article>
+        </div>
+      </section>
+
+      <section class="final-cta"><p class="step-label">QUANTUMSHIELD</p><h2>Protect public-service data. Prove what was authorised.</h2><a class="threat-button" href="solution.html">Open the hybrid encryption demo <span>→</span></a></section>
+    </main>
+    <footer><span>Quantum<span>Shield</span></span><span>Built for learning · Synthetic e-governance data only</span></footer>
+  </body>
+</html>

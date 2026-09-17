@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="QuantumShield bank privacy-preserving data-sharing lab." />
+  <title>BankGuard | QuantumShield</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <script src="vendor/ml-kem.classic.js"></script>
+  <script src="bank.js" defer></script>
+</head>
+<body>
+  <main>
+    <nav class="nav">
+      <a class="brand" href="index.html"><span class="brand-mark">Q</span><span>Quantum<span>Shield</span></span></a>
+      <a class="nav-link" href="solution.html">← Quantum-safe solution</a>
+    </nav>
+
+    <section class="bank-hero">
+      <p class="eyebrow"><span></span> BANKGUARD · SYNTHETIC DATA ONLY</p>
+      <h1>Share useful bank data<br />without sharing <em>people.</em></h1>
+      <p>A bank can safely share an analytics view with an authorised partner without exposing names, account numbers, exact locations, or customer-level defaulter status. This lab combines data policy, k-anonymity, differential privacy, and QuantumShield’s real hybrid encryption.</p>
+      <div class="bank-hero-notes"><span>FICTIONAL CUSTOMERS</span><span>K = 3 ANONYMITY</span><span>PRIVATE AGGREGATE QUERIES</span></div>
+    </section>
+
+    <section class="bank-lab" aria-labelledby="bank-lab-title">
+      <div class="bank-lab-head">
+        <div>
+          <p class="step-label">PRIVACY-PRESERVING DATA SHARING</p>
+          <h2 id="bank-lab-title">Bank → authorised analytics partner</h2>
+          <p>The bank never sends the raw customer dataset. A policy engine classifies every field, builds a minimum-size anonymous group, and encrypts only the permitted partner view to the recipient’s public key.</p>
+        </div>
+        <span class="bank-tag">DEMO PARTNER: RISK RESEARCH LAB</span>
+      </div>
+
+      <div class="bank-flow">
+        <article id="bankKeyCard"><span>01</span><div><strong>Partner creates public key</strong><p>The public key travels to the bank; the private key stays with the partner.</p></div></article>
+        <div class="bank-arrow">→</div>
+        <article id="bankPolicyCard"><span>02</span><div><strong>Bank applies privacy policy</strong><p>Classify fields, remove direct identifiers, and group quasi-identifiers.</p></div></article>
+        <div class="bank-arrow">→</div>
+        <article id="bankPackageCard"><span>03</span><div><strong>Encrypted safe view travels</strong><p>Only the allowed anonymous analytics package is encrypted and shared.</p></div></article>
+        <div class="bank-arrow">→</div>
+        <article id="bankPartnerCard"><span>04</span><div><strong>Partner runs safe query</strong><p>Aggregate results only; direct requests for customer identities are blocked.</p></div></article>
+      </div>
+
+      <div class="bank-action-row">
+        <button id="bankGenerateKeysButton" type="button">1. Create partner key set <span>→</span></button>
+        <button id="bankClassifyButton" type="button" disabled>2. Classify &amp; anonymise bank data <span>→</span></button>
+        <button id="bankEncryptButton" type="button" disabled>3. Create encrypted partner package <span>→</span></button>
+        <button id="bankOpenButton" type="button" disabled>4. Partner opens safe view <span>→</span></button>
+      </div>
+
+      <section class="bank-journey" aria-labelledby="bank-journey-title">
+        <div class="bank-journey-head">
+          <div><p class="result-label">VISIBLE DATA JOURNEY</p><h3 id="bank-journey-title">What changes before any bank data travels</h3><p>Follow one fictional record through the policy and encryption pipeline. The raw record stays inside the bank; only the permitted group view can be sent.</p></div>
+          <span id="bankJourneyState">WAITING FOR PARTNER KEY</span>
+        </div>
+
+        <div class="bank-journey-grid">
+          <article class="bank-journey-card source-journey-card" id="bankJourneySource">
+            <div class="journey-card-head"><span>01</span><div><p>BANK-ONLY INPUT</p><h4>Raw fictional customer record</h4></div></div>
+            <dl class="journey-fields">
+              <div><dt>Name</dt><dd>Aarav Mehta</dd></div>
+              <div><dt>Account</dt><dd>AC-7011</dd></div>
+              <div><dt>Age</dt><dd>22</dd></div>
+              <div><dt>PIN</dt><dd>110021</dd></div>
+              <div><dt>Income</dt><dd>₹6.2L</dd></div>
+              <div><dt>Default</dt><dd>No</dd></div>
+            </dl>
+            <code>Never placed in the partner package</code>
+          </article>
+
+          <article class="bank-journey-card" id="bankJourneyPolicy">
+            <div class="journey-card-head"><span>02</span><div><p>POLICY ENGINE</p><h4>Minimum-necessary transformation</h4></div></div>
+            <dl class="journey-fields transformed-fields">
+              <div><dt>Name</dt><dd class="removed-value">Removed</dd></div>
+              <div><dt>Account</dt><dd class="removed-value">Removed</dd></div>
+              <div><dt>Age 22</dt><dd>20–29</dd></div>
+              <div><dt>PIN 110021</dt><dd>North</dd></div>
+              <div><dt>Income ₹6.2L</dt><dd>₹5–10L</dd></div>
+              <div><dt>Default</dt><dd class="restricted-value">Bank-only</dd></div>
+            </dl>
+            <code id="bankJourneyPolicyOutput">Waiting for classification</code>
+          </article>
+
+          <article class="bank-journey-card" id="bankJourneyPackage">
+            <div class="journey-card-head"><span>03</span><div><p>SAFE PACKAGE</p><h4>Anonymous group + encryption</h4></div></div>
+            <dl class="journey-fields">
+              <div><dt>Group</dt><dd>20–29 · North</dd></div>
+              <div><dt>Members</dt><dd>3 customers</dd></div>
+              <div><dt>Loan band</dt><dd>₹5.1–6.3L</dd></div>
+              <div><dt>ML-KEM</dt><dd id="bankJourneyKem">Waiting</dd></div>
+              <div><dt>AES-GCM</dt><dd id="bankJourneyAes">Waiting</dd></div>
+              <div><dt>Identity data</dt><dd class="removed-value">Absent</dd></div>
+            </dl>
+            <code id="bankJourneyPackageOutput">Waiting for encrypted package</code>
+          </article>
+
+          <article class="bank-journey-card" id="bankJourneyPartner">
+            <div class="journey-card-head"><span>04</span><div><p>AUTHORISED PARTNER</p><h4>Receives only safe insight</h4></div></div>
+            <dl class="journey-fields">
+              <div><dt>Names</dt><dd class="removed-value">Not available</dd></div>
+              <div><dt>Accounts</dt><dd class="removed-value">Not available</dd></div>
+              <div><dt>Group view</dt><dd id="bankJourneyGroupView">Locked</dd></div>
+              <div><dt>Default status</dt><dd class="restricted-value">Aggregate only</dd></div>
+              <div><dt>Safe query</dt><dd id="bankJourneyQueryView">Not run</dd></div>
+              <div><dt>Unsafe query</dt><dd id="bankJourneyBlockView">Not tested</dd></div>
+            </dl>
+            <code id="bankJourneyPartnerOutput">Waiting for private-key decryption</code>
+          </article>
+        </div>
+
+        <div class="bank-query-journey" id="bankQueryJourney">
+          <div id="bankQueryJourneyInternalCard"><span>INSIDE BANK PRIVACY SERVICE</span><strong id="bankQueryJourneyInternal">Exact customer-level result stays internal</strong></div>
+          <div id="bankQueryJourneyNoiseCard"><span>DIFFERENTIAL PRIVACY STEP</span><strong id="bankQueryJourneyNoise">Noise added only for an approved aggregate</strong></div>
+          <div id="bankQueryJourneyReleaseCard"><span>PARTNER RECEIVES</span><strong id="bankQueryJourneyRelease">No result released yet</strong></div>
+        </div>
+      </section>
+
+      <section class="bank-key-panel" id="bankKeyPanel" hidden>
+        <div><p class="result-label">PARTNER KEY EXCHANGE</p><h3>Risk Research Lab’s ML-KEM-768 public key</h3><p>The public fingerprint is what the bank receives. The matching private key stays in this browser tab with the authorised partner.</p></div>
+        <code id="bankPublicKeyFingerprint">—</code>
+      </section>
+
+      <section class="bank-data-grid">
+        <article class="bank-data-card raw-bank-card">
+          <div class="bank-card-head"><div><p>BANK-ONLY SOURCE</p><h3>Raw fictional loan dataset</h3></div><span>12 RECORDS</span></div>
+          <p class="bank-card-copy">This source view is deliberately never placed in the partner package.</p>
+          <div class="bank-table-wrap">
+            <table id="bankRawTable"><thead><tr><th>Name</th><th>Account</th><th>Age</th><th>PIN</th><th>Income</th><th>Loan</th><th>Default</th></tr></thead><tbody></tbody></table>
+          </div>
+        </article>
+
+        <article class="bank-data-card policy-bank-card" id="bankPolicyPanel">
+          <div class="bank-card-head"><div><p>POLICY ENGINE</p><h3>Field decisions</h3></div><span id="bankPolicyState">WAITING</span></div>
+          <p class="bank-card-copy">The system does not “guess.” It follows explicit field-classification and sharing rules.</p>
+          <div class="field-rules" id="bankFieldRules">
+            <p>Run privacy classification to inspect the sharing policy.</p>
+          </div>
+        </article>
+      </section>
+
+      <section class="bank-anon-panel" id="bankAnonPanel" hidden aria-labelledby="bank-anon-title">
+        <div class="bank-anon-head"><div><p class="result-label">PERMITTED PARTNER VIEW</p><h3 id="bank-anon-title">k-anonymous groups — no direct customer identities</h3><p>Each group contains at least three fictional customers with the same shared quasi-identifier ranges. Individual defaulter status is not included.</p></div><span id="bankKStatus">k = 3</span></div>
+        <div class="bank-table-wrap"><table id="bankAnonTable"><thead><tr><th>Age band</th><th>Region</th><th>Income band</th><th>Customers</th><th>Loan band</th><th>Customer default status</th></tr></thead><tbody></tbody></table></div>
+      </section>
+
+      <section class="bank-package-panel" id="bankPackagePanel" hidden aria-labelledby="bank-package-title">
+        <div><p class="result-label">REAL HYBRID ENCRYPTION</p><h3 id="bank-package-title">Protected partner package created</h3><p>The bank has encapsulated a one-time secret to the partner’s ML-KEM-768 public key and encrypted the anonymous group view using AES-256-GCM.</p></div>
+        <dl>
+          <div><dt>Shared payload</dt><dd id="bankPackagePayload">—</dd></div>
+          <div><dt>ML-KEM ciphertext</dt><dd id="bankPackageKem">—</dd></div>
+          <div><dt>AES-GCM IV</dt><dd id="bankPackageIv">—</dd></div>
+          <div><dt>Hidden from package</dt><dd>Names · accounts · PINs · individual default status</dd></div>
+        </dl>
+      </section>
+
+      <section class="bank-query-panel" id="bankQueryPanel" hidden aria-labelledby="bank-query-title">
+        <div class="bank-query-head"><div><p class="result-label">PARTNER ANALYTICS CONSOLE</p><h3 id="bank-query-title">Ask a safe question, not for a person.</h3><p>The partner can receive privacy-protected aggregate insight. The policy engine blocks an identity-revealing request.</p></div><span>ε = 1.0</span></div>
+        <div class="bank-query-actions">
+          <button id="bankSafeQueryButton" type="button">Query: how many defaulters are age 30–39? <span>→</span></button>
+          <button id="bankUnsafeQueryButton" class="unsafe-query" type="button">Query: list accounts of defaulters <span>→</span></button>
+        </div>
+        <div class="bank-query-result" id="bankQueryResult" aria-live="polite">Open the safe partner view to run a privacy-preserving query.</div>
+      </section>
+
+      <section class="bank-trace" aria-labelledby="bank-trace-title">
+        <div class="bank-trace-head"><div><p class="result-label">WORKING TRACE</p><h3 id="bank-trace-title">What happens behind the scenes</h3></div><span>REAL CRYPTO + PRIVACY RULES</span></div>
+        <div class="bank-trace-grid">
+          <article id="bankTraceKey"><p>KEY EXCHANGE</p><strong>ML-KEM-768 recipient setup</strong><code>Waiting for partner public key</code></article>
+          <article id="bankTracePolicy"><p>DATA POLICY</p><strong>Classify → remove → generalise</strong><code>Waiting for bank privacy policy</code></article>
+          <article id="bankTraceEncrypt"><p>PACKAGE</p><strong>ML-KEM + AES-256-GCM</strong><code>Waiting for safe analytics view</code></article>
+          <article id="bankTraceQuery"><p>QUERY CONTROL</p><strong>DP aggregate or block</strong><code>Waiting for authorised partner</code></article>
+        </div>
+      </section>
+
+      <section class="bank-console" aria-live="polite"><div><span></span> BANKGUARD POLICY CONSOLE</div><p id="bankConsole">Ready. Create the authorised partner key set to begin.</p></section>
+      <aside class="bank-accuracy"><span class="note-icon">i</span><p><strong>What this demonstrates:</strong> real ML-KEM-768 key establishment and AES-256-GCM encryption happen locally in the browser. K-anonymity and differential privacy are implemented on fictional data to illustrate data-minimisation policy. This is not a production banking, identity, consent, or compliance system.</p></aside>
+    </section>
+
+    <section class="bank-why"><p class="step-label">THE COMPLETE SECURITY STORY</p><h2>Authorised access should still be the minimum necessary access.</h2><div><article><span>IN TRANSIT</span><h3>Encrypt to the right partner</h3><p>ML-KEM-768 establishes a protected secret; AES-GCM encrypts the permitted package.</p></article><article><span>AT REST / SHARING</span><h3>Minimise the shared dataset</h3><p>Remove direct identifiers and generalise quasi-identifiers until each group reaches k = 3.</p></article><article><span>ANALYTICS</span><h3>Return safe aggregate insight</h3><p>Differential privacy adds controlled noise; identity-revealing requests are denied.</p></article></div></section>
+    <section class="final-cta"><p class="step-label">QUANTUMSHIELD</p><h2>Protect the package. Restrict the knowledge.</h2><a class="threat-button" href="solution.html">Open hybrid encryption demo <span>→</span></a></section>
+  </main>
+  <footer><span>Quantum<span>Shield</span></span><span>Built for learning · Fictional bank data only</span></footer>
+</body>
+</html>

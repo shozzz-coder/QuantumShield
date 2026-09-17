@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="QuantumShield Q-GAN workflow and medical-record integrity lab." />
+  <title>Q-MedGuard | QuantumShield</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <script src="medical.js" defer></script>
+</head>
+<body>
+  <main>
+    <nav class="nav">
+      <a class="brand" href="index.html"><span class="brand-mark">Q</span><span>Quantum<span>Shield</span></span></a>
+      <a class="nav-link" href="solution.html">← Quantum-safe solution</a>
+    </nav>
+
+    <section class="medical-hero">
+      <p class="eyebrow"><span></span> Q-MEDGUARD · Q-GAN WORKFLOW PROTOTYPE</p>
+      <h1>When AI changes a scan,<br /><em>cryptography must catch it.</em></h1>
+      <p>This educational lab uses the project-supplied MRI reference image. A Q-GAN workflow prototype produces a visibly synthetic candidate, then a discriminator prototype scores it. Finally, a real browser digital-signature check proves that the candidate is not the original signed record.</p>
+      <div class="medical-hero-notes"><span>NOT FOR DIAGNOSIS</span><span>Q-GAN WORKFLOW SIMULATED</span><span>INTEGRITY CHECK IS LIVE</span></div>
+    </section>
+
+    <section class="medical-lab" aria-labelledby="medical-lab-title">
+      <div class="medical-lab-head">
+        <div>
+          <p class="step-label">MEDICAL RECORD INTEGRITY LAB</p>
+          <h2 id="medical-lab-title">A convincing synthetic scan should never silently enter a patient record.</h2>
+          <p>The source record is signed first. A Q-GAN workflow prototype creates a synthetic candidate; a discriminator prototype scores its likelihood of being generated. Verification then checks the exact received record bytes against the original signature.</p>
+        </div>
+        <span class="medical-tag">FICTIONAL DEMO CASE</span>
+      </div>
+
+      <div class="medical-flow medical-flow-four" aria-label="Q-GAN medical record integrity workflow">
+        <article id="medicalSignCard">
+          <span>01</span>
+          <div><strong>Sign reference MRI record</strong><p>Creates a fingerprint and digital signature for the supplied reference image plus metadata.</p></div>
+        </article>
+        <div class="medical-arrow">→</div>
+        <article id="medicalGeneratorCard">
+          <span>02</span>
+          <div><strong>Q-GAN Generator (prototype)</strong><p>Uses a simulated quantum latent seed to compose a synthetic image candidate.</p></div>
+        </article>
+        <div class="medical-arrow">→</div>
+        <article id="medicalDiscriminatorCard">
+          <span>03</span>
+          <div><strong>Discriminator (prototype)</strong><p>Scores the candidate as likely reference or likely generated.</p></div>
+        </article>
+        <div class="medical-arrow">→</div>
+        <article id="medicalVerifyCard">
+          <span>04</span>
+          <div><strong>Verify origin and integrity</strong><p>The original signature must fail against any changed record.</p></div>
+        </article>
+      </div>
+
+      <div class="medical-record-grid">
+        <article class="medical-record original-record">
+          <div class="medical-record-head"><div><p>HOSPITAL NORTH · REFERENCE</p><h3>Original signed MRI record</h3></div><span class="record-state" id="medicalOriginalState">LOADING</span></div>
+          <canvas id="medicalOriginalCanvas" width="640" height="400" aria-label="Project-supplied reference MRI image"></canvas>
+          <dl class="medical-meta">
+            <div><dt>Patient</dt><dd>Demo subject · non-diagnostic</dd></div>
+            <div><dt>Record ID</dt><dd>MED-DEMO-2048</dd></div>
+            <div><dt>Care note</dt><dd id="medicalOriginalNote">Follow-up review required</dd></div>
+            <div><dt>Image fingerprint</dt><dd id="medicalOriginalHash">Waiting for signature</dd></div>
+          </dl>
+        </article>
+
+        <article class="medical-record attacked-record" id="medicalAttackRecord">
+          <div class="medical-record-head"><div><p>Q-GAN GENERATOR OUTPUT</p><h3>Synthetic MRI candidate</h3></div><span class="record-state danger-state" id="medicalAttackState">WAITING</span></div>
+          <canvas id="medicalAttackCanvas" width="640" height="400" aria-label="Q-GAN workflow synthetic MRI candidate"></canvas>
+          <dl class="medical-meta">
+            <div><dt>Generator latent state</dt><dd id="medicalLatentState">Waiting for generator</dd></div>
+            <div><dt>Record ID</dt><dd>MED-DEMO-2048</dd></div>
+            <div><dt>Care note</dt><dd id="medicalAttackNote">No altered copy created</dd></div>
+            <div><dt>Discriminator score</dt><dd id="medicalDiscriminatorScore">Not evaluated</dd></div>
+            <div><dt>Image fingerprint</dt><dd id="medicalAttackHash">Waiting for generator</dd></div>
+          </dl>
+        </article>
+      </div>
+
+      <div class="medical-controls">
+        <button id="medicalSignButton" type="button">1. Sign original record <span>→</span></button>
+        <button id="medicalGeneratorButton" type="button" disabled>2. Run Q-GAN Generator <span>→</span></button>
+        <button id="medicalDiscriminatorButton" type="button" disabled>3. Run Discriminator <span>→</span></button>
+        <button id="medicalVerifyButton" type="button" disabled>4. Verify record signature <span>→</span></button>
+        <button id="medicalResetButton" class="medical-reset" type="button">Reset lab</button>
+      </div>
+
+      <section class="medical-trace" aria-labelledby="medical-trace-title">
+        <div class="medical-trace-head">
+          <div><p class="result-label">BEHIND THE SCENES</p><h3 id="medical-trace-title">The Q-GAN workflow and the cryptographic decision</h3></div>
+          <span>REAL CRYPTO + Q-GAN PROTOTYPE</span>
+        </div>
+        <div class="medical-trace-grid">
+          <article id="medicalTraceHash">
+            <p class="trace-kind real-trace">REAL CRYPTO · STEP 01</p>
+            <h4>Fingerprint the original</h4>
+            <p>The supplied MRI asset fingerprint and the care note are placed in one record manifest, then hashed with SHA-256.</p>
+            <code id="medicalTraceHashValue">Waiting for original record</code>
+          </article>
+          <article id="medicalTraceSignature">
+            <p class="trace-kind real-trace">REAL CRYPTO · STEP 02</p>
+            <h4>Hospital signs the manifest</h4>
+            <p>A browser signing key produces a signature over the exact original manifest.</p>
+            <code id="medicalTraceSignatureValue">Waiting for hospital signature</code>
+          </article>
+          <article id="medicalTraceGenerator">
+            <p class="trace-kind simulated-trace">Q-GAN PROTOTYPE · STEP 03</p>
+            <h4>Generator creates candidate</h4>
+            <p>A simulated quantum latent state controls a composited synthetic region and altered fictional note. This is not a trained medical model.</p>
+            <code id="medicalTraceGeneratorValue">Waiting for generator</code>
+          </article>
+          <article id="medicalTraceDiscriminator">
+            <p class="trace-kind simulated-trace">Q-GAN PROTOTYPE · STEP 04</p>
+            <h4>Discriminator scores candidate</h4>
+            <p>A prototype scoring rule uses the generator-controlled changed region. It illustrates the discriminator role; it is not a clinical classifier.</p>
+            <code id="medicalTraceDiscriminatorValue">Waiting for discriminator</code>
+          </article>
+          <article id="medicalTraceVerify">
+            <p class="trace-kind real-trace">REAL CRYPTO · STEP 05</p>
+            <h4>Re-hash and verify</h4>
+            <p>The receiver hashes the changed record and verifies it against the original hospital signature.</p>
+            <code id="medicalTraceVerifyValue">Waiting for received record</code>
+          </article>
+        </div>
+      </section>
+
+      <section class="medical-console" aria-live="polite">
+        <div class="medical-console-head"><span></span> Q-MEDGUARD VERIFICATION CONSOLE</div>
+        <p id="medicalConsole">Loading the project-supplied MRI reference image…</p>
+      </section>
+
+      <aside class="medical-accuracy"><span class="note-icon">i</span><p><strong>Important technical boundary:</strong> This is a <strong>Q-GAN workflow prototype</strong>: the generator and discriminator roles are interactive and visible, but the page does not train or run a quantum model. The discriminator score is a transparent demonstration score, not a medical diagnosis or deepfake detector. The final integrity decision is real browser cryptography using ECDSA P-256. A production quantum-safe deployment should use NIST-standard ML-DSA signatures plus QuantumShield’s ML-KEM + AES-GCM protected transfer.</p></aside>
+    </section>
+
+    <section class="medical-why">
+      <p class="step-label">WHY THIS MATTERS</p>
+      <h2>Encryption hides data. Signatures prove it is still the right data.</h2>
+      <div>
+        <article><span>CONFIDENTIALITY</span><h3>ML-KEM + AES-GCM</h3><p>Protect the scan and record while travelling between authorised organisations.</p></article>
+        <article><span>INTEGRITY &amp; ORIGIN</span><h3>Signed record manifest</h3><p>Verify that the supplied image fingerprint and clinical metadata still match what the hospital signed.</p></article>
+        <article><span>AI-ERA THREAT MODEL</span><h3>Never trust appearance alone</h3><p>Even a candidate that looks realistic—or fools a prototype discriminator—must fail if its bytes do not match the trusted signature.</p></article>
+      </div>
+    </section>
+
+    <section class="final-cta"><p class="step-label">QUANTUMSHIELD</p><h2>Protect the transfer. Prove the record.</h2><a class="threat-button" href="solution.html">Open the hybrid encryption demo <span>→</span></a></section>
+  </main>
+  <footer><span>Quantum<span>Shield</span></span><span>Built for learning · Not for diagnostic use</span></footer>
+</body>
+</html>

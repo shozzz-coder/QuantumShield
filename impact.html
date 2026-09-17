@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="QuantumShield sector impact and affordable post-quantum migration planner." />
+    <title>QuantumShield | Impact &amp; Rollout</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="impact.css" />
+    <style>:root { --text: var(--ink); }</style>
+  </head>
+  <body>
+    <header class="nav-shell">
+      <a class="brand" href="index.html" aria-label="QuantumShield home"><span class="brand-mark">Q</span><span>Quantum<span>Shield</span></span></a>
+      <a class="back-nav" href="solution.html">← Quantum-safe solution</a>
+    </header>
+
+    <main>
+      <section class="impact-hero">
+        <p class="eyebrow">FROM DEMO TO DEPLOYMENT</p>
+        <h1>The threat is global.<br /><span>The rollout must be practical.</span></h1>
+        <p class="impact-lead">QuantumShield is not only an encryption demo. It is a migration playbook: discover vulnerable public-key systems, protect the most valuable data first, and upgrade safely without replacing every computer at once.</p>
+        <div class="hero-actions"><a class="primary-action" href="#planner">Build a rollout plan <span>↓</span></a><a class="secondary-action" href="channel.html">View the live secure channel <span>→</span></a></div>
+      </section>
+
+      <section class="impact-section" aria-labelledby="sectors-title">
+        <p class="eyebrow">WHY THIS MATTERS</p>
+        <h2 id="sectors-title">One cryptography problem.<br />Different real-world consequences.</h2>
+        <div class="sector-grid">
+          <article class="sector-card bank"><span class="sector-index">01</span><h3>Banks &amp; payments</h3><p>Payment gateways, trading links, VPNs, customer portals, and signed software updates rely on public-key cryptography today.</p><strong>First priority</strong><span>Map internet-facing TLS, remote access, payment APIs, and long-retention financial records.</span></article>
+          <article class="sector-card government"><span class="sector-index">02</span><h3>Government &amp; defence</h3><p>Citizen records, diplomatic communications, defence supply chains, and identity systems can need confidentiality for decades.</p><strong>First priority</strong><span>Find long-lived records and systems with an upgrade window that may take years.</span><a class="impact-link" href="defence.html">Open the DefenceGuard lab <span>→</span></a></article>
+          <article class="sector-card health"><span class="sector-index">03</span><h3>Healthcare &amp; research</h3><p>Patient data, genomic research, and clinical partnerships can remain sensitive long after it is encrypted.</p><strong>First priority</strong><span>Protect archives, research transfer channels, and connected medical-device update paths.</span></article>
+          <article class="sector-card infra"><span class="sector-index">04</span><h3>Telecom &amp; infrastructure</h3><p>Networks, energy operators, satellite links, and industrial devices often have long equipment lifecycles and many dependencies.</p><strong>First priority</strong><span>Inventory gateways, device firmware signing, VPN concentrators, and supplier connections.</span></article>
+        </div>
+      </section>
+
+      <section class="impact-section product-section" aria-labelledby="product-title">
+        <p class="eyebrow">THE QUANTUMSHIELD APPROACH</p>
+        <h2 id="product-title">Make post-quantum migration<br />an operating process—not a panic purchase.</h2>
+        <div class="product-grid">
+          <article><span>01</span><h3>Discover</h3><p>Build a cryptographic inventory: algorithms, certificates, protocols, vendors, data lifetime, and system dependencies.</p></article>
+          <article><span>02</span><h3>Prioritise</h3><p>Rank systems by exposure, value, confidentiality lifetime, and how difficult they are to upgrade.</p></article>
+          <article><span>03</span><h3>Migrate</h3><p>Adopt standards-based post-quantum key establishment in software, during normal refresh cycles, using hybrid modes where needed.</p></article>
+          <article><span>04</span><h3>Verify &amp; adapt</h3><p>Test interoperability and performance, monitor policy centrally, then make crypto upgrades routine—this is cryptographic agility.</p></article>
+        </div>
+      </section>
+
+      <section class="impact-section affordable-section" aria-labelledby="affordable-title">
+        <p class="eyebrow">KEEP THE COST REALISTIC</p>
+        <h2 id="affordable-title">Software first. Specialised hardware only where it earns its cost.</h2>
+        <div class="rollout-grid">
+          <article class="rollout-card recommended"><p class="card-kicker">DEFAULT FOR MOST ORGANISATIONS</p><h3>Post-quantum cryptography in existing systems</h3><ul><li>Upgrade TLS/VPN/API gateways, applications, and cloud services as they reach their normal maintenance cycle.</li><li>Use a central crypto policy so teams and suppliers follow the same approved standards.</li><li>Run hybrid classical + post-quantum key establishment during the transition when supported.</li><li>Reuse current networks and most current servers; budget mainly for inventory, testing, engineering, and training.</li></ul><p class="card-outcome">Broad protection with the lowest incremental infrastructure cost.</p></article>
+          <article class="rollout-card selective"><p class="card-kicker">SELECTIVE HIGH-SECURITY LINKS</p><h3>Quantum key distribution (QKD)</h3><ul><li>Use only for narrowly defined, extremely sensitive links where dedicated optical hardware and operational overhead are justified.</li><li>QKD distributes keys; it still needs authenticated endpoints and conventional encryption for the actual data.</li><li>It is not the low-cost, universal replacement for post-quantum cryptography.</li></ul><p class="card-outcome">A specialised complement—not the baseline rollout plan.</p></article>
+        </div>
+      </section>
+
+      <section id="planner" class="impact-section planner-section" aria-labelledby="planner-title">
+        <p class="eyebrow">INTERACTIVE MIGRATION PLANNER</p>
+        <h2 id="planner-title">Turn risk into your first<br />90-day action plan.</h2>
+        <div class="planner-card">
+          <div class="planner-controls">
+            <label>Sector<select id="sector-select"><option value="bank">Banking &amp; payments</option><option value="government">Government &amp; public services</option><option value="health">Healthcare &amp; research</option><option value="infra">Telecom &amp; critical infrastructure</option></select></label>
+            <label>Deployment scale<select id="scale-select"><option value="team">Single organisation / pilot</option><option value="national">National or multi-agency</option><option value="network">Large supplier network</option></select></label>
+            <label>How long must data stay secret?<select id="lifetime-select"><option value="long">10+ years</option><option value="medium">3–10 years</option><option value="short">Under 3 years</option></select></label>
+          </div>
+          <button id="build-plan" class="primary-action" type="button">Generate my rollout plan <span>→</span></button>
+          <div id="plan-result" class="plan-result" aria-live="polite"><p>Choose your context, then generate a plan. The recommendation will focus on realistic first actions—not a promise to replace everything overnight.</p></div>
+        </div>
+      </section>
+
+      <section class="impact-section timeline-section" aria-labelledby="timeline-title">
+        <p class="eyebrow">A MANAGEABLE ROLLOUT</p>
+        <h2 id="timeline-title">How a large-scale transition starts.</h2>
+        <ol class="rollout-timeline"><li><span>0–3 months</span><h3>Inventory &amp; ownership</h3><p>Assign an accountable team, map high-value cryptography, and identify systems that cannot be upgraded easily.</p></li><li><span>3–9 months</span><h3>Pilot &amp; test</h3><p>Upgrade one low-risk but meaningful path, validate performance, and test interoperability with suppliers.</p></li><li><span>9–24 months</span><h3>Scale by risk</h3><p>Prioritise exposed and long-lived data systems; bake post-quantum requirements into procurement and refresh cycles.</p></li><li><span>Continuous</span><h3>Operate crypto-agile</h3><p>Keep an inventory, rotate capabilities through policy, and remain ready as standards and risk change.</p></li></ol>
+      </section>
+
+      <aside class="source-note"><span class="note-icon">i</span><p><strong>Why this strategy is credible:</strong> NIST’s PQC migration guidance begins with cryptographic discovery and risk management, then testing and interoperability. ML-KEM is standardised in FIPS 203. <a href="https://pages.nist.gov/nccoe-migration-post-quantum-cryptography/" target="_blank" rel="noreferrer">Read the NIST migration guidance →</a></p></aside>
+      <section class="final-cta"><p class="step-label">THE WORKING PROTOTYPE</p><h2>See the protection in action.</h2><a class="threat-button" href="channel.html">Open the secure channel <span>→</span></a></section>
+    </main>
+    <footer><span>QuantumShield</span><span>Practical post-quantum readiness</span></footer>
+    <script src="impact.js"></script>
+  </body>
+</html>
